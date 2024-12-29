@@ -1,0 +1,14 @@
+name: my_ticket
+services:
+  postgres:
+    container_name: my_ticket
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=my_ticket'
+      - 'POSTGRES_PASSWORD=my_ticket'
+      - 'POSTGRES_USER=my_ticket'
+    ports:
+      - '5433:5432'
+volumes:
+  postgres_data:
+    driver: local
