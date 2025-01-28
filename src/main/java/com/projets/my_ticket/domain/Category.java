@@ -22,9 +22,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotNull(message = "Name must not be null")
-    @NotBlank(message = "Name must not be blank")
+
     @Column(unique = true)
+    @NotBlank(message = "Name must not be blank")
     private String name;
 
 }
