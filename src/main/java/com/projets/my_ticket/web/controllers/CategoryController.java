@@ -1,6 +1,8 @@
 package com.projets.my_ticket.web.controllers;
 
 import com.projets.my_ticket.domain.Category;
+import com.projets.my_ticket.dto.CategoryCreateDto;
+import com.projets.my_ticket.mapper.CategoryMapper;
 import com.projets.my_ticket.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
 public class CategoryController {
+
     private final CategoryService categoryService;
+    private final CategoryMapper categoryMapper;
 
     @GetMapping
     public ResponseEntity<Page<Category>> findAll(@RequestParam(defaultValue = "0") int page,
@@ -27,12 +31,14 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> save(@Valid  @RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.create(category));
+    public ResponseEntity<Category> save(@Valid @RequestBody CategoryCreateDto categoryCreateDto) {
+        Category category = categoryMapper.toEntity(categoryCreateDto);
+        return ResponseEntity.status(201).body(categoryService.create(category));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> update(@PathVariable UUID id, @RequestBody Category category) {
+    public ResponseEntity<Category> update(@PathVariable UUID id, @RequestBody CategoryCreateDto categoryCreateDto) {
+        Category category = categoryMapper.toEntity(categoryCreateDto);
         return ResponseEntity.ok(categoryService.update(id, category));
     }
 

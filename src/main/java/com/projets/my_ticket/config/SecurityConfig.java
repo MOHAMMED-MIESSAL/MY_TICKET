@@ -1,4 +1,4 @@
-package com.projets.my_ticket;
+package com.projets.my_ticket.config;
 
 
 import org.springframework.context.annotation.Bean;
