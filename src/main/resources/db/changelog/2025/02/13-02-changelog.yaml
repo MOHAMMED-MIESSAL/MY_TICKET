@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1739473822484-8
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: available_seats
+            tableName: event
+
