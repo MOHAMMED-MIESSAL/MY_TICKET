@@ -42,10 +42,9 @@ public class CategoryImplementation implements CategoryService {
 
     @Override
     public Optional<Category> findById(UUID id) {
-        if (categoryRepository.findById(id).isEmpty()) {
-            throw new EntityNotFoundException("Category with id : " + id + " not found");
-        }
-        return categoryRepository.findById(id);
+        // Check if the category exists
+        return Optional.ofNullable(categoryRepository.findById(id)
+                .orElseThrow(() -> new CustomValidationException("Category with id : " + id + " not found")));
     }
 
     @Override
@@ -54,6 +53,9 @@ public class CategoryImplementation implements CategoryService {
             throw new EntityNotFoundException("Category with id : " + id + " not found");
         }
         category.setId(id);
+        if (categoryRepository.findByName(category.getName()).isPresent()) {
+            throw new CustomValidationException("Category with name : " + category.getName() + " already exists");
+        }
         return categoryRepository.save(category);
     }
 }
