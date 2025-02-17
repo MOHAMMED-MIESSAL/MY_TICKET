@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projets.my_ticket.enums.Role;
 import com.projets.my_ticket.enums.Sexe;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,16 +25,10 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    @NotBlank(message = "Username must not be blank")
     private String username;
 
     @Column(unique = true)
-    @NotBlank(message = "Email must not be blank")
-    @Email(message = "Email must be valid")
     private String email;
-
-    @NotBlank(message = "Password must not be blank")
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -53,21 +45,25 @@ public class User implements UserDetails {
                 .map(authority -> (GrantedAuthority) () -> authority)
                 .toList();
     }
+
     @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return UserDetails.super.isAccountNonExpired();
     }
+
     @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return UserDetails.super.isAccountNonLocked();
     }
+
     @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return UserDetails.super.isCredentialsNonExpired();
     }
+
     @JsonIgnore
     @Override
     public boolean isEnabled() {
