@@ -31,7 +31,7 @@ public class UserCreateDto {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Sexe must not be null")
+    @NotNull(message = "Sex must not be null")
     private Sexe sexe;
 
     @NotNull(message = "Role must not be null")
