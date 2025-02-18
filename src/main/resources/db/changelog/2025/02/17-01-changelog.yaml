@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1739801222210-7
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_reservation
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: number_of_tickets
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: reservation_date
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: event_id
+                  type: UUID
+            tableName: reservation
+  - changeSet:
+      id: 1739801222210-11
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: event_id
+            baseTableName: reservation
+            constraintName: FK_RESERVATION_ON_EVENT
+            referencedColumnNames: id
+            referencedTableName: event
+  - changeSet:
+      id: 1739801222210-12
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: reservation
+            constraintName: FK_RESERVATION_ON_USER
+            referencedColumnNames: id
+            referencedTableName: user
+
