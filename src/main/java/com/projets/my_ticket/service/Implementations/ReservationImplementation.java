@@ -44,7 +44,7 @@ public class ReservationImplementation implements ReservationService {
 
         // Check if the quantity is between 1 and 3
         if (reservation.getNumberOfTickets() <= 0 || reservation.getNumberOfTickets() > 3) {
-            throw new CustomValidationException("Quantity must be between 1 and 3");
+            throw new CustomValidationException("Number of tickets must be between 1 and 3");
         }
 
         return reservationRepository.save(reservation);
