@@ -13,4 +13,5 @@ public interface EventService {
     Event update(UUID id ,Event event);
     Optional<Event> findById(UUID id);
     void delete(UUID id);
+    Page<Event> findAllByUserId(UUID userId, Pageable pageable);
 }

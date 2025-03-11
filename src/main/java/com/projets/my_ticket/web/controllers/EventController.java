@@ -61,4 +61,12 @@ public class EventController {
     public ResponseEntity<Optional<Event>> findById(@PathVariable UUID id) {
         return ResponseEntity.ok(eventService.findById(id));
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Page<Event>> findAllByUserId(@PathVariable UUID userId,
+                                                       @RequestParam(defaultValue = "0") int page,
+                                                       @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(eventService.findAllByUserId(userId, pageable));
+    }
 }

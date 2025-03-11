@@ -55,4 +55,9 @@ public class EventImplementation implements EventService {
     public void delete(UUID id) {
         eventRepository.deleteById(id);
     }
+
+    @Override
+    public Page<Event> findAllByUserId(UUID userId, Pageable pageable) {
+        return eventRepository.findAllByUserId(userId, pageable);
+    }
 }

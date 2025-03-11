@@ -1,4 +1,4 @@
-package com.projets.itsupportticket.util;
+package com.projets.my_ticket.util;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

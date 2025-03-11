@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1740954719463-15
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: sex
+                  type: VARCHAR(255)
+            tableName: user
+  - changeSet:
+      id: 1740954719463-16
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: sexe
+            tableName: user
+

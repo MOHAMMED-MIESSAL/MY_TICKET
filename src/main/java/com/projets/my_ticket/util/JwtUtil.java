@@ -1,8 +1,8 @@
-package com.projets.itsupportticket.util;
+package com.projets.my_ticket.util;
 
-import com.projets.itsupportticket.domain.User;
+
+import com.projets.my_ticket.domain.User;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 

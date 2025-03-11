@@ -2,7 +2,7 @@ package com.projets.my_ticket.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projets.my_ticket.enums.Role;
-import com.projets.my_ticket.enums.Sexe;
+import com.projets.my_ticket.enums.Sex;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
 
 
@@ -32,7 +33,7 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Sexe sexe;
+    private Sex sex;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -40,10 +41,7 @@ public class User implements UserDetails {
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return role.getAuthorities()
-                .stream()
-                .map(authority -> (GrantedAuthority) () -> authority)
-                .toList();
+        return Collections.singleton(() -> "ROLE_" + role.name());
     }
 
     @JsonIgnore
