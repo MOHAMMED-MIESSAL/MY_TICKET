@@ -57,5 +57,14 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Page<Reservation>> findByUserId(@PathVariable UUID id,
+                                                         @RequestParam(defaultValue = "0") int page,
+                                                         @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(reservationService.findByUserId(id, pageable));
+    }
+
 
 }

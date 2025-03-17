@@ -81,4 +81,9 @@ public class ReservationImplementation implements ReservationService {
         return reservationRepository.save(existingReservation);
     }
 
+    @Override
+    public Page<Reservation> findByUserId(UUID userId, Pageable pageable) {
+        return reservationRepository.findByUserId(userId, pageable);
+    }
+
 }
