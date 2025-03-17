@@ -1,7 +1,7 @@
 package com.projets.my_ticket.dto;
 
 import com.projets.my_ticket.enums.Role;
-import com.projets.my_ticket.enums.Sexe;
+import com.projets.my_ticket.enums.Sex;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
@@ -32,7 +32,7 @@ public class UserCreateDto {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Sex must not be null")
-    private Sexe sexe;
+    private Sex sex;
 
     @NotNull(message = "Role must not be null")
     @Enumerated(EnumType.STRING)

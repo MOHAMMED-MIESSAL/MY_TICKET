@@ -13,4 +13,5 @@ public interface ReservationService {
     Reservation update(UUID id, Reservation reservation);
     Optional<Reservation> findById(UUID id);
     void delete(UUID id);
+    Page<Reservation> findByUserId(UUID userId, Pageable pageable);
 }

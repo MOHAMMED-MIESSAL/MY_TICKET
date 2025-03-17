@@ -1,6 +1,6 @@
 package com.projets.my_ticket.enums;
 
-public enum Sexe {
+public enum Sex {
     MALE,
     FEMALE
 }

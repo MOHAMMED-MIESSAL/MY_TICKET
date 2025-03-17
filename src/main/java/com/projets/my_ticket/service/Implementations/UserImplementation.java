@@ -70,4 +70,18 @@ public class UserImplementation implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+    @Override
+    public Optional<User> login(String email, String password) {
+        if (password == null) {
+            throw new CustomValidationException("Password must not be null");
+        }
+        if (userRepository.findByEmail(email).isPresent()) {
+            User user = userRepository.findByEmail(email).get();
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                return Optional.of(user);
+            }
+        }
+        throw new CustomValidationException("Invalid credentials");
+    }
 }

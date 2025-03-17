@@ -9,4 +9,5 @@ import java.util.UUID;
 
 public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
     Page<Reservation> findAll(Pageable pageable);
+    Page<Reservation> findByUserId(UUID userId, Pageable pageable);
 }

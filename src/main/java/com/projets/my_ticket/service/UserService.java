@@ -13,4 +13,5 @@ public interface UserService {
     User update(UUID id, User user);
     Optional<User> findById(UUID id);
     void delete(UUID id);
+    Optional<User> login(String email, String password);
 }
