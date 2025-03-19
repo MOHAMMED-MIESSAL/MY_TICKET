@@ -9,4 +9,5 @@ import java.util.UUID;
 
 public interface EventRepository extends JpaRepository<Event,UUID> {
     Page<Event> findAllByUserId(UUID userId, Pageable pageable);
+    Page<Event> findByTitleContainingIgnoreCase(String title, Pageable pageable);
 }

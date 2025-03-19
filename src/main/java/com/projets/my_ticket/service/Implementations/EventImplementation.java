@@ -60,4 +60,9 @@ public class EventImplementation implements EventService {
     public Page<Event> findAllByUserId(UUID userId, Pageable pageable) {
         return eventRepository.findAllByUserId(userId, pageable);
     }
+
+    @Override
+    public Page<Event> findByTitle(String title, Pageable pageable) {
+        return eventRepository.findByTitleContainingIgnoreCase(title, pageable);
+    }
 }

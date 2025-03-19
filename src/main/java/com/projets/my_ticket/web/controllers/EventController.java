@@ -69,4 +69,18 @@ public class EventController {
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(eventService.findAllByUserId(userId, pageable));
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<Event>> findByTitle(@RequestParam(required = false) String title,
+                                                   @RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        if (title == null || title.isEmpty()) {
+            return ResponseEntity.ok(eventService.findAll(pageable));
+        } else {
+            return ResponseEntity.ok(eventService.findByTitle(title, pageable));
+        }
+    }
+
 }
