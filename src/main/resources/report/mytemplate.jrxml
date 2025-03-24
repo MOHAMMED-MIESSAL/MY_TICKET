@@ -3,14 +3,14 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
               name="ReservationReport" pageWidth="595" pageHeight="842"
-              columnWidth="515" leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50">
+              columnWidth="515" leftMargin="40" rightMargin="40" topMargin="30" bottomMargin="30">
 
     <!-- Style Definitions -->
-    <style name="Title" fontName="Arial" fontSize="24" isBold="true" pdfFontName="Helvetica-Bold"/>
-    <style name="SubTitle" fontName="Arial" fontSize="14" isBold="true"/>
-    <style name="FieldLabel" fontName="Arial" fontSize="11" isBold="true"/>
-    <style name="FieldValue" fontName="Arial" fontSize="11"/>
-    <style name="Section" mode="Opaque" backcolor="#F0F0F0"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold" forecolor="#D84315"/>
+    <style name="SubTitle" fontName="Arial" fontSize="16" isBold="true" forecolor="#E64A19"/>
+    <style name="FieldLabel" fontName="Arial" fontSize="12" isBold="true" forecolor="#BF360C"/>
+    <style name="FieldValue" fontName="Arial" fontSize="12"/>
+    <style name="Section" mode="Opaque" backcolor="#FFCCBC"/>
 
     <!-- Fields Declaration -->
     <field name="id" class="java.util.UUID"/>
@@ -20,88 +20,101 @@
 
     <!-- Page Header Band -->
     <pageHeader>
-        <band height="30">
-            <textField pattern="dd/MM/yyyy">
-                <reportElement x="415" y="5" width="100" height="20"/>
-                <textElement textAlignment="Right"/>
-                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-            </textField>
+        <band height="50">
+            <rectangle>
+                <reportElement x="0" y="0" width="515" height="50" backcolor="#D84315"/>
+            </rectangle>
+            <staticText>
+                <reportElement style="Title" x="20" y="10" width="475" height="30" forecolor="#FFFFFF"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Réservation - Confirmation]]></text>
+            </staticText>
         </band>
     </pageHeader>
 
-    <!-- Column Header Band -->
-    <columnHeader>
-        <band height="80">
-            <rectangle>
-                <reportElement x="0" y="0" width="515" height="80" backcolor="#2C3E50" forecolor="#2C3E50"/>
-            </rectangle>
-            <staticText>
-                <reportElement style="Title" x="20" y="20" width="475" height="40" forecolor="#FFFFFF"/>
-                <textElement textAlignment="Center" verticalAlignment="Middle"/>
-                <text><![CDATA[Détails de la Réservation]]></text>
-            </staticText>
-        </band>
-    </columnHeader>
-
     <!-- Detail Band -->
     <detail>
-        <band height="200">
-            <!-- Reservation Info Section -->
-            <rectangle>
-                <reportElement style="Section" x="0" y="0" width="515" height="30"/>
-            </rectangle>
-            <staticText>
-                <reportElement style="SubTitle" x="10" y="5" width="200" height="20"/>
-                <text><![CDATA[Informations de Réservation]]></text>
-            </staticText>
+        <band height="350">
+            <frame>
+                <reportElement x="0" y="0" width="515" height="350" backcolor="#FFF3E0"/>
 
-            <!-- Reservation Details -->
-            <staticText>
-                <reportElement style="FieldLabel" x="20" y="40" width="120" height="20"/>
-                <text><![CDATA[ID Réservation:]]></text>
-            </staticText>
-            <textField>
-                <reportElement style="FieldValue" x="140" y="40" width="375" height="20"/>
-                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-            </textField>
+                <!-- Bloc Résumé -->
+                <rectangle>
+                    <reportElement x="10" y="10" width="495" height="50" backcolor="#FF7043"/>
+                </rectangle>
+                <staticText>
+                    <reportElement style="SubTitle" x="20" y="20" width="475" height="20" forecolor="#FFFFFF"/>
+                    <textElement textAlignment="Center"/>
+                    <text><![CDATA[Détails de la Réservation]]></text>
+                </staticText>
 
-            <!-- Number of Tickets -->
-            <staticText>
-                <reportElement style="FieldLabel" x="20" y="70" width="120" height="20"/>
-                <text><![CDATA[Nombre de billets:]]></text>
-            </staticText>
-            <textField>
-                <reportElement style="FieldValue" x="140" y="70" width="375" height="20"/>
-                <textFieldExpression><![CDATA[$F{numberOfTickets}]]></textFieldExpression>
-            </textField>
+                <!-- ID Réservation -->
+                <staticText>
+                    <reportElement style="FieldLabel" x="20" y="70" width="150" height="20"/>
+                    <text><![CDATA[ID Réservation :]]></text>
+                </staticText>
+                <textField>
+                    <reportElement style="FieldValue" x="180" y="70" width="315" height="20"/>
+                    <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+                </textField>
 
-            <!-- User Info Section -->
-            <rectangle>
-                <reportElement style="Section" x="0" y="100" width="515" height="30"/>
-            </rectangle>
-            <staticText>
-                <reportElement style="SubTitle" x="10" y="105" width="200" height="20"/>
-                <text><![CDATA[Informations Utilisateur]]></text>
-            </staticText>
+                <!-- Nombre de billets -->
+                <staticText>
+                    <reportElement style="FieldLabel" x="20" y="100" width="150" height="20"/>
+                    <text><![CDATA[Nombre de billets :]]></text>
+                </staticText>
+                <textField>
+                    <reportElement style="FieldValue" x="180" y="100" width="315" height="20"/>
+                    <textFieldExpression><![CDATA[$F{numberOfTickets}]]></textFieldExpression>
+                </textField>
 
-            <staticText>
-                <reportElement style="FieldLabel" x="20" y="140" width="120" height="20"/>
-                <text><![CDATA[Nom d'utilisateur:]]></text>
-            </staticText>
-            <textField>
-                <reportElement style="FieldValue" x="140" y="140" width="375" height="20"/>
-                <textFieldExpression><![CDATA[$F{user}.getUsername()]]></textFieldExpression>
-            </textField>
+                <!-- Informations Utilisateur -->
+                <rectangle>
+                    <reportElement x="10" y="130" width="495" height="30" backcolor="#FF7043"/>
+                </rectangle>
+                <staticText>
+                    <reportElement style="SubTitle" x="20" y="135" width="475" height="20" forecolor="#FFFFFF"/>
+                    <textElement textAlignment="Center"/>
+                    <text><![CDATA[Informations Utilisateur]]></text>
+                </staticText>
 
-            <!-- Event Info -->
-            <staticText>
-                <reportElement style="FieldLabel" x="20" y="170" width="120" height="20"/>
-                <text><![CDATA[ID Événement:]]></text>
-            </staticText>
-            <textField>
-                <reportElement style="FieldValue" x="140" y="170" width="375" height="20"/>
-                <textFieldExpression><![CDATA[$F{event}.getId()]]></textFieldExpression>
-            </textField>
+                <staticText>
+                    <reportElement style="FieldLabel" x="20" y="170" width="150" height="20"/>
+                    <text><![CDATA[Nom d'utilisateur :]]></text>
+                </staticText>
+                <textField>
+                    <reportElement style="FieldValue" x="180" y="170" width="315" height="20"/>
+                    <textFieldExpression><![CDATA[$F{user}.getUsername()]]></textFieldExpression>
+                </textField>
+
+                <!-- Informations Événement -->
+                <rectangle>
+                    <reportElement x="10" y="200" width="495" height="30" backcolor="#FF7043"/>
+                </rectangle>
+                <staticText>
+                    <reportElement style="SubTitle" x="20" y="205" width="475" height="20" forecolor="#FFFFFF"/>
+                    <textElement textAlignment="Center"/>
+                    <text><![CDATA[Détails de l'Événement]]></text>
+                </staticText>
+
+                <staticText>
+                    <reportElement style="FieldLabel" x="20" y="240" width="150" height="20"/>
+                    <text><![CDATA[Nom de l'événement :]]></text>
+                </staticText>
+                <textField>
+                    <reportElement style="FieldValue" x="180" y="240" width="315" height="20"/>
+                    <textFieldExpression><![CDATA[$F{event}.getTitle()]]></textFieldExpression>
+                </textField>
+
+                <staticText>
+                    <reportElement style="FieldLabel" x="20" y="270" width="150" height="20"/>
+                    <text><![CDATA[Date :]]></text>
+                </staticText>
+                <textField>
+                    <reportElement style="FieldValue" x="180" y="270" width="315" height="20"/>
+                    <textFieldExpression><![CDATA[$F{event}.getDate()]]></textFieldExpression>
+                </textField>
+            </frame>
         </band>
     </detail>
 

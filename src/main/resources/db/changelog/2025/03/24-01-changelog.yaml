@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1742846425998-15
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: created_at
+                  type: DATETIME
+            tableName: event
+  - changeSet:
+      id: 1742846425998-16
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: image_path
+            tableName: event
+

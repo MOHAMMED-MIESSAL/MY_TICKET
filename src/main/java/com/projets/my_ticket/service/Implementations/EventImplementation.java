@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -64,5 +65,10 @@ public class EventImplementation implements EventService {
     @Override
     public Page<Event> findByTitle(String title, Pageable pageable) {
         return eventRepository.findByTitleContainingIgnoreCase(title, pageable);
+    }
+
+    @Override
+    public List<Event> findLatestEvents() {
+        return eventRepository.findTop3ByOrderByCreatedAtDesc();
     }
 }
