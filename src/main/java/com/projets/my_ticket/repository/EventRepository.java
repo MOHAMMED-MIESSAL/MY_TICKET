@@ -12,4 +12,5 @@ public interface EventRepository extends JpaRepository<Event,UUID> {
     Page<Event> findAllByUserId(UUID userId, Pageable pageable);
     Page<Event> findByTitleContainingIgnoreCase(String title, Pageable pageable);
     List<Event> findTop3ByOrderByCreatedAtDesc();
+    List<Event> findByCategoryId(UUID categoryId);
 }

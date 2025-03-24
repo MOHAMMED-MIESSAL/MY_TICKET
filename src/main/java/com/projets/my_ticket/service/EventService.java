@@ -17,4 +17,5 @@ public interface EventService {
     Page<Event> findAllByUserId(UUID userId, Pageable pageable);
     Page<Event> findByTitle(String title, Pageable pageable);
     List<Event> findLatestEvents();
+    List<Event> findByCategoryId(UUID categoryId);
 }

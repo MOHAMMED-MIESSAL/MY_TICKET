@@ -31,6 +31,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/getLast3events").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/events/getEventsByCategory").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/categories").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/search").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/search/**").permitAll()
                         .requestMatchers("/export-reservation").permitAll()

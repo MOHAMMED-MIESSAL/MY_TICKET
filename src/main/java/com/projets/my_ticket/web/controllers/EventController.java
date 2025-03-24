@@ -88,4 +88,16 @@ public class EventController {
     public List<Event> getLast3events() {
         return eventService.findLatestEvents();
     }
+
+    @GetMapping("/getEventsByCategory")
+    public ResponseEntity<List<Event>> getEventsByCategory(@RequestParam(required = false) UUID categoryId) {
+        List<Event> events;
+        if (categoryId == null) {
+            events = eventService.findAll(PageRequest.of(0, 10)).getContent();
+        } else {
+            events = eventService.findByCategoryId(categoryId);
+        }
+        return ResponseEntity.ok(events);
+    }
+
 }

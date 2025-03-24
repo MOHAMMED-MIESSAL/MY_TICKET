@@ -71,4 +71,9 @@ public class EventImplementation implements EventService {
     public List<Event> findLatestEvents() {
         return eventRepository.findTop3ByOrderByCreatedAtDesc();
     }
+
+    @Override
+    public List<Event> findByCategoryId(UUID categoryId) {
+        return eventRepository.findByCategoryId(categoryId);
+    }
 }
