@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/events").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/getLast3events").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/getEventsByCategory").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/events/getEventsByDate").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/categories").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/search").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/search/**").permitAll()
